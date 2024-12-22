@@ -5,6 +5,7 @@ import { DockDemo } from "@/components/navbar";
 import IconCloud from "@/components/ui/icon-cloud";
 import Image from "next/image";
 import mockup from "../public/mockup.png";
+import ContributionGraph from "@/components/GitHubContributionGraph";
 
 export function Profile() {
   return (
@@ -18,11 +19,13 @@ export function Profile() {
               Aaditya Kolhapure,
             </h1>
             <p className="text-xl text-[#FA4032] mb-6 flex space-x-4 tracking-wide">
-              a full-stack developer crafting elegant solutions with MERN & Laravel.
+              a full-stack developer crafting elegant solutions with MERN &
+              Laravel.
             </p>
 
             <p className="text-gray-700 mb-8 text-3xl tracking-wide">
-              Let's transform your vision into reality with sleek code and captivating design!
+              Let's transform your vision into reality with sleek code and
+              captivating design!
             </p>
 
             {/* Buttons */}
@@ -33,10 +36,11 @@ export function Profile() {
 
           {/* Image Section */}
           <div className="mt-12 md:mt-0 hidden md:block">
-              <Image src={mockup} alt="Mockup Image" />
-            </div>
+            <Image src={mockup} alt="Mockup Image" />
           </div>
         </div>
       </div>
+      
+    </div>
   );
 }

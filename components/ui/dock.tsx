@@ -1,6 +1,6 @@
 "use client";
 
-import React, { PropsWithChildren, useRef } from "react";
+import React, { PropsWithChildren, useRef, ReactElement } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import {
   motion,
@@ -48,9 +48,9 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
     const renderChildren = () => {
       return React.Children.map(children, (child) => {
         if (React.isValidElement(child) && child.type === DockIcon) {
-          return React.cloneElement(child, {
-            ...child.props,
-            mouseX: mouseX,
+          return React.cloneElement(child as ReactElement<any>, {
+            ...(typeof child.props === 'object' ? child.props : {}),
+            mouseX,
             size: iconSize,
             magnification: iconMagnification,
             distance: iconDistance,
@@ -77,6 +77,9 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
     );
   },
 );
+
+Dock.displayName = "Dock";
+
 
 Dock.displayName = "Dock";
 

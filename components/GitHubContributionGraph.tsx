@@ -1,100 +1,203 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-import CalendarHeatmap from "react-calendar-heatmap";
-import "react-calendar-heatmap/dist/styles.css";
-
+import React, { useEffect, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface ContributionGraphProps {
   username: string;
-  token: string;
+  githubToken: string;
 }
 
-const GitHubContributionGraph: React.FC<ContributionGraphProps> = ({
+interface ContributionDay {
+  date: Date;
+  contributions: number;
+}
+
+const ContributionGraph: React.FC<ContributionGraphProps> = ({
   username,
-  token,
+  githubToken,
 }) => {
-  const [contributions, setContributions] = useState<any[]>([]);
-  const [years, setYears] = useState<number[]>([]);
-  const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
+  const [contributionData, setContributionData] = useState<ContributionDay[]>(
+    []
+  );
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchContributionData() {
+    const fetchContributions = async () => {
       try {
-        const response = await fetch(
-          `https://api.github.com/users/${username}/contributions?year=${selectedYear}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const query = `
+          query {
+            user(login: "${username}") {
+              contributionsCollection {
+                contributionCalendar {
+                  totalContributions
+                  weeks {
+                    contributionDays {
+                      contributionCount
+                      date
+                    }
+                  }
+                }
+              }
+            }
           }
-        );
+        `;
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch contributions data");
+        const response = await fetch("https://api.github.com/graphql", {
+          method: "POST",
+          headers: {
+            Authorization: `bearer ${githubToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query }),
+        });
+
+        const result = await response.json();
+
+        if (result.errors) {
+          throw new Error(result.errors[0].message);
         }
 
-        const data = await response.json();
-        setContributions(data.contributions || []);
+        const contributions =
+          result.data.user.contributionsCollection.contributionCalendar;
+        const flattenedData = contributions.weeks.flatMap(
+          (week: {
+            contributionDays: { contributionCount: number; date: string }[];
+          }) =>
+            week.contributionDays.map((day) => ({
+              date: new Date(day.date),
+              contributions: day.contributionCount,
+            }))
+        );
 
-        // Set available years (mock for simplicity)
-        setYears([2023, 2022, 2021, 2020]);
-      } catch (error) {
-        console.error("Error fetching contributions:", error);
+        setContributionData(flattenedData);
+        setLoading(false);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred");
+        setLoading(false);
       }
-    }
+    };
 
-    fetchContributionData();
-  }, [username, token, selectedYear]);
+    fetchContributions();
+  }, [username, githubToken]);
 
-  const handleYearChange = (year: number) => {
-    setSelectedYear(year);
+  const getContributionLevel = (contributions: number): number => {
+    if (contributions === 0) return 0;
+    if (contributions <= 2) return 1;
+    if (contributions <= 5) return 2;
+    if (contributions <= 8) return 3;
+    return 4;
   };
 
+  const getColor = (level: number): string => {
+    switch (level) {
+      case 0:
+        return "#FEF3E2";
+      case 1:
+        return "#FAB12F";
+      case 2:
+        return "#FA812F";
+      case 3:
+        return "#FA4032";
+      case 4:
+        return "#FA4032";
+      default:
+        return "#FEF3E2";
+    }
+  };
+
+  const weeks = [];
+  for (let i = 0; i < contributionData.length; i += 7) {
+    weeks.push(contributionData.slice(i, i + 7));
+  }
+
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  if (loading) {
+    return (
+      <Card className="w-full p-4">
+        <CardContent>Loading contribution data...</CardContent>
+      </Card>
+    );
+  }
+
+  if (error) {
+    return (
+      <Card className="w-full p-4">
+        <CardContent className="text-red-500">Error: {error}</CardContent>
+      </Card>
+    );
+  }
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 md:px-8 lg:px-10 bg-[#FEF3E2] rounded-md shadow-md">
-      <h2 className="text-2xl md:text-3xl font-bold text-[#FA812F] mb-4">
-        GitHub Contributions
-      </h2>
-      <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300 mb-6">
-        View your GitHub contributions over the years.
-      </p>
-
-      {/* Year Tabs */}
-      <div className="flex space-x-4 mb-6">
-        {years.map((year) => (
-          <button
-            key={year}
-            className={`px-4 py-2 rounded-md font-medium transition-all ${
-              selectedYear === year
-                ? "bg-[#FAB12F] text-white"
-                : "bg-[#FA812F] text-black hover:bg-[#FA4032] hover:text-white"
-            }`}
-            onClick={() => handleYearChange(year)}
-          >
-            {year}
-          </button>
-        ))}
+    <Card className="w-full max-w-4xl p-4 mb-4 pb-8">
+      <div className="max-w-7xl mx-auto py-20 px-4 md:px-4 lg:px-10">
+        <h2 className="text-3xl md:text-4xl text-black dark:text-white max-w-4xl front-bold">
+          GitHub Contributions
+        </h2>
       </div>
-
-      {/* Contribution Graph */}
-      <div className="overflow-auto">
-        {contributions.length > 0 ? (
-          <Heatmap
-            data={contributions}
-            colorScale={["#FEF3E2", "#FAB12F", "#FA812F", "#FA4032"]}
-            startDate={new Date(`${selectedYear}-01-01`)}
-            endDate={new Date(`${selectedYear}-12-31`)}
-          />
-        ) : (
-          <p className="text-neutral-500 dark:text-neutral-400">
-            No contributions data available for the selected year.
-          </p>
-        )}
-      </div>
-    </div>
+      <CardContent>
+        <div className="flex flex-col gap-2">
+          {/* Months row */}
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            {months.map((month, index) => (
+              <div key={index} className="w-8">
+                {month}
+              </div>
+            ))}
+          </div>
+          {/* Scrollable Graph */}
+          <div className="overflo w-x-auto relative">
+            <div className="inline-flex gap-1">
+              {weeks.map((week, weekIndex) => (
+                <div key={weekIndex} className="flex flex-col gap-1">
+                  {week.map((day, dayIndex) => {
+                    const level = getContributionLevel(day.contributions);
+                    return (
+                      <div
+                        key={dayIndex}
+                        className="w-3 h-3 rounded-sm"
+                        style={{ backgroundColor: getColor(level) }}
+                        title={`${day.date.toDateString()}: ${
+                          day.contributions
+                        } contributions`}
+                      />
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Legend */}
+          <div className="flex items-center gap-2 mt-4 text-sm text-gray-500">
+            <span>Less</span>
+            {[0, 1, 2, 3, 4].map((level) => (
+              <div
+                key={level}
+                className="w-3 h-3 rounded-sm"
+                style={{ backgroundColor: getColor(level) }}
+              />
+            ))}
+            <span>More</span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
-export default GitHubContributionGraph;
+export default ContributionGraph;

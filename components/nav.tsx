@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import ShimmerButton from "@/components/ui/shimmer-button";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export function NavbarDemo() {
@@ -31,14 +32,6 @@ function Navbar({ className }: { className?: string }) {
       )}
     >
       <nav className="flex items-center justify-between">
-        {/* Logo */}
-        {/* <a
-          href="#"
-          className="text-2xl font-bold text-gray-800 hover:text-[#FAB12F] mr-14"
-        >
-          Portfolio
-        </a> */}
-
         {/* Mobile Menu Button */}
         <button
           className="md:hidden focus:outline-none"
@@ -97,8 +90,8 @@ function Navbar({ className }: { className?: string }) {
             </a>
           </li>
           <li>
-            <a
-              href="#contact"
+            <Link
+              href="/contact"  // Updated to navigate to the Contact page
               onMouseEnter={() => handleMouseEnter("contact")}
               onMouseLeave={handleMouseLeave}
               className={cn(
@@ -107,18 +100,12 @@ function Navbar({ className }: { className?: string }) {
               )}
             >
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
 
         {/* Call-to-Action Button */}
-        {/* <a
-          href="#resume"
-          className="hidden md:block px-6 py-2 bg-[#FAB12F]/90 text-white rounded-lg shadow-md hover:bg-[#FA4032]/90 transition"
-        >
-          Download Resume
-        </a> */}
-        <div className=" flex items-center justify-center">
+        <div className="flex items-center justify-center">
           <ShimmerButton className="shadow-2xl">
             <svg
               className="w-6 h-6 text-text-white dark:text-white"
@@ -134,7 +121,6 @@ function Navbar({ className }: { className?: string }) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                
                 d="M10 3v4a1 1 0 0 1-1 1H5m4 8h6m-6-4h6m4-8v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Z"
               />
             </svg>
