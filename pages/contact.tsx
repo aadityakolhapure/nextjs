@@ -43,17 +43,23 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A041C] text-white p-8">
-      <h1 className="text-5xl font-bold text-center mb-16">Contact Us</h1>
+    <div className="min-h-screen bg-[#fff] text-white p-8">
+      {/* <h1 className="text-5xl font-bold text-center mb-16">Contact Us</h1> */}
+      <div className="max-w-7xl mx-auto pt-5 px-4 md:px-4 lg:px-10 mb-4">
+        <h2 className="text-3xl md:text-4xl mb-4 text-black dark:text-white max-w-4xl font-bold" >
+          Contact Details
+        </h2>
+        
+      </div>
       
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Contact Details Section */}
         <div className="bg-[#fa8638] rounded-3xl p-8">
-          <h2 className="text-3xl font-semibold mb-8">Contact Details</h2>
+          {/* <h2 className="text-3xl font-semibold mb-8">Contact Details</h2> */}
           <div className="space-y-6">
             <div>
               <h3 className="font-semibold text-xl mb-2">Mail Id:</h3>
-              <p>aaditya@example.com</p>
+              <p>aadityakolhapure28@gmail.com</p>
             </div>
             <div>
               <h3 className="font-semibold text-xl mb-2">Phone No:</h3>
@@ -67,14 +73,14 @@ const Contact = () => {
         </div>
 
         {/* Contact Form Section */}
-        <div className="bg-[#0A041C]">
+        <div className="bg-[#fff]">
           <h2 className="text-3xl font-semibold mb-8">Get in Touch</h2>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <input
                 {...form.register("email")}
                 placeholder="Email address"
-                className="w-full bg-transparent border-b-2 border-[#FAB12F] p-3 focus:outline-none focus:border-[#FA812F]"
+                className="w-full bg-transparent border-b-2 border-[#FAB12F] p-3 focus:outline-none focus:border-[#FA812F] text-gray-500"
               />
               {form.formState.errors.email && (
                 <p className="text-[#FA4032] mt-1">{form.formState.errors.email.message}</p>
@@ -85,7 +91,7 @@ const Contact = () => {
               <input
                 {...form.register("name")}
                 placeholder="Name"
-                className="w-full bg-transparent border-b-2 border-[#FAB12F] p-3 focus:outline-none focus:border-[#FA812F]"
+                className="w-full bg-transparent border-b-2 border-[#FAB12F] p-3 focus:outline-none focus:border-[#FA812F] text-gray-900"
               />
               {form.formState.errors.name && (
                 <p className="text-[#FA4032] mt-1">{form.formState.errors.name.message}</p>
@@ -96,7 +102,7 @@ const Contact = () => {
               <textarea
                 {...form.register("message")}
                 placeholder="Message"
-                className="w-full bg-transparent border-b-2 border-[#FAB12F] p-3 focus:outline-none focus:border-[#FA812F] min-h-[100px]"
+                className="w-full bg-transparent border-b-2 border-[#FAB12F] p-3 focus:outline-none focus:border-[#FA812F] min-h-[100px] text-gray-900"
               />
               {form.formState.errors.message && (
                 <p className="text-[#FA4032] mt-1">{form.formState.errors.message.message}</p>

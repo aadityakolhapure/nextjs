@@ -114,7 +114,7 @@ function Navbar({ className }: { className?: string }) {
           </li>
           <li>
             <Link
-              href="/contact"  // Corrected href to #contact
+              href="#contact"  // Corrected href to #contact
               onMouseEnter={() => handleMouseEnter("contact")}
               onMouseLeave={handleMouseLeave}
               className={cn(

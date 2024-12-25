@@ -60,7 +60,7 @@ export function TimelineDemo() {
     },
   ];
   return (
-    <div className="w-full md:h-full h-screen">
+    <div className="w-full md:h-full h-full">
       
       <Timeline data={data} />
     </div>

@@ -11,6 +11,7 @@ import ContributionGraph from "@/components/GitHubContributionGraph";
 import AnimatedCircularProgressBar from "@/components/ui/animated-circular-progress-bar";
 
 import Contact from "@/pages/contact";
+import { TabsDemo } from "@/components/project";
 
 export default function Home() {
   const [value, setValue] = useState(0);
@@ -102,6 +103,10 @@ export default function Home() {
                 "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
               )}
             />
+          </div>
+
+          <div className="relative flex md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10">
+            <TabsDemo/>
           </div>
 
           <section id="contact" className="py-16">
