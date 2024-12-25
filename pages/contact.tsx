@@ -1,64 +1,33 @@
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import "@/app/globals.css";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useState } from "react";
 
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  subject: z.string().min(4, {
-    message: "Subject must be at least 4 characters.",
-  }),
-  message: z.string().min(10, {
-    message: "Message must be at least 10 characters.",
-  }),
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
-
-type FormValues = z.infer<typeof formSchema>;
 
 const Contact = () => {
   const [status, setStatus] = useState("");
-
-  const form = useForm<FormValues>({
+  const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
-      subject: "",
       message: "",
     },
   });
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data) => {
     setStatus("sending");
-
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
@@ -74,147 +43,101 @@ const Contact = () => {
   };
 
   return (
-    <div 
-      className="min-h-screen flex justify-center items-center p-4"
-      style={{ background: "#FEF3E2" }}
-    >
-      <Card className="w-full max-w-lg border-none shadow-xl">
-        <CardHeader className="space-y-1">
-          <CardTitle 
-            className="text-3xl font-bold text-center"
-            style={{ color: "#FA812F" }}
-          >
-            Contact Me
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel style={{ color: "#FA812F" }}>Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        className="border-2 focus:ring-2"
-                        style={{ 
-                          borderColor: "#FAB12F",
-                          backgroundColor: "white"
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+    <div className="min-h-screen bg-[#0A041C] text-white p-8">
+      <h1 className="text-5xl font-bold text-center mb-16">Contact Us</h1>
+      
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+        {/* Contact Details Section */}
+        <div className="bg-[#fa8638] rounded-3xl p-8">
+          <h2 className="text-3xl font-semibold mb-8">Contact Details</h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-semibold text-xl mb-2">Mail Id:</h3>
+              <p>aaditya@example.com</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-xl mb-2">Phone No:</h3>
+              <p>8983081348</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-xl mb-2">Address:</h3>
+              <p>Satara, Maharashtra, India - 415001</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Form Section */}
+        <div className="bg-[#0A041C]">
+          <h2 className="text-3xl font-semibold mb-8">Get in Touch</h2>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div>
+              <input
+                {...form.register("email")}
+                placeholder="Email address"
+                className="w-full bg-transparent border-b-2 border-[#FAB12F] p-3 focus:outline-none focus:border-[#FA812F]"
               />
-
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel style={{ color: "#FA812F" }}>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        type="email"
-                        className="border-2 focus:ring-2"
-                        style={{ 
-                          borderColor: "#FAB12F",
-                          backgroundColor: "white"
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="subject"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel style={{ color: "#FA812F" }}>Subject</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        className="border-2 focus:ring-2"
-                        style={{ 
-                          borderColor: "#FAB12F",
-                          backgroundColor: "white"
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel style={{ color: "#FA812F" }}>Message</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        {...field}
-                        className="min-h-[120px] border-2 focus:ring-2"
-                        style={{ 
-                          borderColor: "#FAB12F",
-                          backgroundColor: "white"
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <Button
-                type="submit"
-                className="w-full text-white transition-colors"
-                style={{ 
-                  backgroundColor: "#FA4032",
-                  hover: { backgroundColor: "#FA812F" }
-                }}
-                disabled={status === "sending"}
-              >
-                Send Message
-              </Button>
-
-              {status === "sending" && (
-                <Alert>
-                  <AlertCircle className="h-4 w-4" />
-                  <AlertDescription>Sending message...</AlertDescription>
-                </Alert>
+              {form.formState.errors.email && (
+                <p className="text-[#FA4032] mt-1">{form.formState.errors.email.message}</p>
               )}
-              
-              {status === "success" && (
-                <Alert className="bg-green-50">
-                  <CheckCircle2 className="h-4 w-4 text-green-600" />
-                  <AlertDescription className="text-green-600">
-                    Message sent successfully!
-                  </AlertDescription>
-                </Alert>
+            </div>
+            
+            <div>
+              <input
+                {...form.register("name")}
+                placeholder="Name"
+                className="w-full bg-transparent border-b-2 border-[#FAB12F] p-3 focus:outline-none focus:border-[#FA812F]"
+              />
+              {form.formState.errors.name && (
+                <p className="text-[#FA4032] mt-1">{form.formState.errors.name.message}</p>
               )}
-              
-              {status === "error" && (
-                <Alert variant="destructive">
-                  <AlertCircle className="h-4 w-4" />
-                  <AlertDescription>
-                    Failed to send message. Please try again.
-                  </AlertDescription>
-                </Alert>
+            </div>
+
+            <div>
+              <textarea
+                {...form.register("message")}
+                placeholder="Message"
+                className="w-full bg-transparent border-b-2 border-[#FAB12F] p-3 focus:outline-none focus:border-[#FA812F] min-h-[100px]"
+              />
+              {form.formState.errors.message && (
+                <p className="text-[#FA4032] mt-1">{form.formState.errors.message.message}</p>
               )}
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
+            </div>
+
+            <button
+              type="submit"
+              className="bg-[#FA4032] hover:bg-[#FA812F] text-white px-8 py-3 rounded-lg transition-colors"
+              disabled={status === "sending"}
+            >
+              Submit
+            </button>
+
+            {status === "sending" && (
+              <Alert className="bg-[#FEF3E2] text-[#FA812F]">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>Sending message...</AlertDescription>
+              </Alert>
+            )}
+
+            {status === "success" && (
+              <Alert className="bg-green-50">
+                <CheckCircle2 className="h-4 w-4 text-green-600" />
+                <AlertDescription className="text-green-600">
+                  Message sent successfully!
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {status === "error" && (
+              <Alert className="bg-[#FA4032]/10 text-[#FA4032]">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>
+                  Failed to send message. Please try again.
+                </AlertDescription>
+              </Alert>
+            )}
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

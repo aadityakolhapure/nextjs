@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ShimmerButton from "@/components/ui/shimmer-button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -15,6 +15,29 @@ export function NavbarDemo() {
 function Navbar({ className }: { className?: string }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
+
+  // Set active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["home", "about", "projects", "contact"];
+      const scrollPosition = window.scrollY;
+
+      sections.forEach((section) => {
+        const sectionElement = document.getElementById(section);
+        if (sectionElement) {
+          const sectionTop = sectionElement.offsetTop;
+          const sectionBottom = sectionTop + sectionElement.offsetHeight;
+
+          if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+            setActive(section);
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleMouseEnter = (item: string) => {
     setActive(item);
@@ -57,7 +80,7 @@ function Navbar({ className }: { className?: string }) {
               onMouseLeave={handleMouseLeave}
               className={cn(
                 "hover:text-[#FA812F] transition-colors",
-                active === "home" && "text-[#FAB12F]"
+                active === "home" && "text-[#FB9D5C]"
               )}
             >
               Home
@@ -70,7 +93,7 @@ function Navbar({ className }: { className?: string }) {
               onMouseLeave={handleMouseLeave}
               className={cn(
                 "hover:text-[#FA812F] transition-colors",
-                active === "about" && "text-[#FAB12F]"
+                active === "about" && "text-[#FB9D5C]"
               )}
             >
               About
@@ -83,7 +106,7 @@ function Navbar({ className }: { className?: string }) {
               onMouseLeave={handleMouseLeave}
               className={cn(
                 "hover:text-[#FA812F] transition-colors",
-                active === "projects" && "text-[#FAB12F]"
+                active === "projects" && "text-[#FB9D5C]"
               )}
             >
               Projects
@@ -91,12 +114,12 @@ function Navbar({ className }: { className?: string }) {
           </li>
           <li>
             <Link
-              href="/contact"  // Updated to navigate to the Contact page
+              href="/contact"  // Corrected href to #contact
               onMouseEnter={() => handleMouseEnter("contact")}
               onMouseLeave={handleMouseLeave}
               className={cn(
                 "hover:text-[#FA812F] transition-colors",
-                active === "contact" && "text-[#FAB12F]"
+                active === "contact" && "text-[#FB9D5C]"
               )}
             >
               Contact
