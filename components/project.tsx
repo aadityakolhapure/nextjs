@@ -13,7 +13,7 @@ const TabContent = ({ title, imagePath }) => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+    <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-gradientStart via-gradientMid1 to-gradientEnd">
       <p>{title}</p>
       <Image
         src={imagePath}

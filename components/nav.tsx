@@ -50,7 +50,7 @@ function Navbar({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "fixed top-0 inset-x-0 max-w-5xl mx-auto z-50 bg-[#FEF3E2]/90 backdrop-blur-xl border border-gray-200 shadow-lg rounded-3xl px-6 py-2",
+        "fixed top-0 inset-x-0 max-w-5xl mx-auto z-50 bg-[#FEF3E2]/90  backdrop-blur-xl border border-gray-200 shadow-lg rounded-3xl px-6 py-2",
         className
       )}
     >
@@ -79,7 +79,7 @@ function Navbar({ className }: { className?: string }) {
               onMouseEnter={() => handleMouseEnter("home")}
               onMouseLeave={handleMouseLeave}
               className={cn(
-                "hover:text-[#FA812F] transition-colors",
+                "hover:text-[#FA812F] transition-colors dark:text-gray-900",
                 active === "home" && "text-[#FB9D5C]"
               )}
             >
@@ -92,7 +92,7 @@ function Navbar({ className }: { className?: string }) {
               onMouseEnter={() => handleMouseEnter("about")}
               onMouseLeave={handleMouseLeave}
               className={cn(
-                "hover:text-[#FA812F] transition-colors",
+                "hover:text-[#FA812F] transition-colors dark:text-gray-900",
                 active === "about" && "text-[#FB9D5C]"
               )}
             >
@@ -101,11 +101,24 @@ function Navbar({ className }: { className?: string }) {
           </li>
           <li>
             <a
+              href="#work"
+              onMouseEnter={() => handleMouseEnter("work")}
+              onMouseLeave={handleMouseLeave}
+              className={cn(
+                "hover:text-[#FA812F] transition-colors dark:text-gray-900",
+                active === "work" && "text-[#FB9D5C]"
+              )}
+            >
+              Experience
+            </a>
+          </li>
+          <li>
+            <a
               href="#projects"
               onMouseEnter={() => handleMouseEnter("projects")}
               onMouseLeave={handleMouseLeave}
               className={cn(
-                "hover:text-[#FA812F] transition-colors",
+                "hover:text-[#FA812F] transition-colors dark:text-gray-900",
                 active === "projects" && "text-[#FB9D5C]"
               )}
             >
@@ -118,7 +131,7 @@ function Navbar({ className }: { className?: string }) {
               onMouseEnter={() => handleMouseEnter("contact")}
               onMouseLeave={handleMouseLeave}
               className={cn(
-                "hover:text-[#FA812F] transition-colors",
+                "hover:text-[#FA812F] transition-colors dark:text-gray-900",
                 active === "contact" && "text-[#FB9D5C]"
               )}
             >
@@ -131,7 +144,7 @@ function Navbar({ className }: { className?: string }) {
         <div className="flex items-center justify-center">
           <ShimmerButton className="shadow-2xl">
             <svg
-              className="w-6 h-6 text-text-white dark:text-white"
+              className="w-6 h-6 text-text-white dark:text-white "
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"

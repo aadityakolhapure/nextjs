@@ -23,7 +23,7 @@ export function Profile() {
               Laravel.
             </p>
 
-            <p className="text-gray-700 mb-8 text-3xl tracking-wide">
+            <p className="text-gray-700 mb-8 text-3xl tracking-wide dark:text-gray-200">
               Let's transform your vision into reality with sleek code and
               captivating design!
             </p>

@@ -7,11 +7,18 @@ import { NavbarDemo } from "@/components/nav";
 import { Profile } from "@/components/profile";
 import { TimelineDemo } from "@/components/education";
 import ContributionGraph from "@/components/GitHubContributionGraph";
+import ExperienceSection from "@/components/WorkExperience";
+import RetroGrid from "@/components/ui/retro-grid";
+import { DotPattern } from "@/components/ui/dot-pattern";
 
 import AnimatedCircularProgressBar from "@/components/ui/animated-circular-progress-bar";
 
 import Contact from "@/pages/contact";
+import Loader3D from "@/components/loader";
 import { TabsDemo } from "@/components/project";
+
+// import Footer from '@/components/footer';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 export default function Home() {
   const [value, setValue] = useState(0);
@@ -31,7 +38,7 @@ export default function Home() {
     setTimeout(() => {
       clearInterval(interval);
       setIsLoading(false);
-    }, 10000); // Simulate loading for 5 seconds
+    }, 5000); // Simulate loading for 10 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -41,13 +48,7 @@ export default function Home() {
       {isLoading ? (
         // Loading Screen
         <div className="flex items-center justify-center min-h-screen bg-[#FEF3E2]">
-          <AnimatedCircularProgressBar
-            max={100}
-            min={0}
-            value={value}
-            gaugePrimaryColor="#FA812F" // Darker shade of red
-            gaugeSecondaryColor="rgba(0, 0, 0, 0.3)"
-          />
+           <Loader3D />
         </div>
       ) : (
         // Main Content
@@ -76,14 +77,25 @@ export default function Home() {
           </div>
 
           {/* Contribution Graph Section */}
-          <div className="relative flex w-full items-center justify-center bg-[#fefbf7] md:shadow-xl p-6">
+          <div className="relative flex w-full items-center justify-center dark:bg-[#2d2d2d] md:shadow-xl p-6">
             <div className="w-full max-w-[90vw] overflow-x-auto justify-center flex">
               <ContributionGraph
                 username="aadityakolhapure"
                 githubToken={process.env.NEXT_PUBLIC_GITHUB_TOKEN || ""}
               />
+              <DotPattern
+                width={20}
+                height={20}
+                cx={1}
+                cy={1}
+                cr={1}
+                className={cn(
+                  "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] ",
+                )}
+              />
             </div>
           </div>
+
 
           {/* Timeline Section */}
           <div
@@ -105,15 +117,52 @@ export default function Home() {
             />
           </div>
 
-          <div className="relative flex md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10">
-            <TabsDemo/>
+          {/* Experience Section */}
+          <div id="work" className="relative flex md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10 shadow-lx">
+            <div className="w-full max-w-[90vw] overflow-x-auto justify-center flex">
+              <ExperienceSection />
+              <DotPattern
+                width={20}
+                height={20}
+                cx={1}
+                cy={1}
+                cr={1}
+                className={cn(
+                  "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] ",
+                )}
+              />
+            </div>
           </div>
 
+          {/* Projects Tabs Section */}
+          <div className="relative flex md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10">
+
+            
+              <TabsDemo />
+           
+            <AnimatedGridPattern
+              numSquares={30}
+              maxOpacity={0.1}
+              duration={3}
+              repeatDelay={1}
+              className={cn(
+                "[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]",
+                "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
+              )}
+            />
+          </div>
+
+          {/* Contact Section */}
           <section id="contact" className="py-16">
             <Contact />
           </section>
+
+          {/* <ThemeToggle /> */}
+
         </div>
-      )}
-    </div>
+
+      )
+      }
+    </div >
   );
 }

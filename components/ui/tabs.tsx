@@ -12,7 +12,7 @@ type Tab = {
 
 const TabContent = ({ title, imagePath }: { title: string; imagePath: string }) => {
   return (
-    <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+    <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-[#FAB12F] to-[#FA4032]">
       <p>{title}</p>
       <Image
         src={imagePath}
@@ -66,7 +66,10 @@ export const Tabs = ({
             }}
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
-            className={cn("relative px-4 py-2 rounded-full", tabClassName)}
+            className={cn(
+              "relative px-4 py-2 rounded-full bg-[#FEF3E2] hover:bg-gradient-to-r hover:from-[#FA812F] hover:to-[#FAB12F] transition-all duration-300 ease-in-out",
+              tabClassName
+            )}
             style={{
               transformStyle: "preserve-3d",
             }}
@@ -76,12 +79,12 @@ export const Tabs = ({
                 layoutId="clickedbutton"
                 transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
                 className={cn(
-                  "absolute inset-0 bg-gray-200 dark:bg-zinc-800 rounded-full",
+                  "absolute inset-0 bg-gradient-to-r from-[#FAB12F] to-[#FA4032] rounded-full",
                   activeTabClassName
                 )}
               />
             )}
-            <span className="relative block text-black dark:text-white">
+            <span className="relative block text-black">
               {tab.title}
             </span>
           </button>
