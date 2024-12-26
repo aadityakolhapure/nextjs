@@ -79,6 +79,10 @@ export const skills = [
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
         },
         {
+          name: "VS Code",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+        },
+        {
           name: "Bash",
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
         },
