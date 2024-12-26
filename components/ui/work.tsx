@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import {BorderBeam} from "@/components/ui/border-beam";
 
 type WorkExperienceProps = {
   internshipName: string;
@@ -41,6 +42,7 @@ const WorkExperience: React.FC<WorkExperienceProps> = ({
           View Certificate
         </a>
       )}
+      
     </div>
   );
 };

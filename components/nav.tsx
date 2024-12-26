@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import ShimmerButton from "@/components/ui/shimmer-button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 export function NavbarDemo() {
   return (
@@ -50,7 +51,7 @@ function Navbar({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "fixed top-0 inset-x-0 max-w-5xl mx-auto z-50 bg-[#FEF3E2]/90  backdrop-blur-xl border border-gray-200 shadow-lg rounded-3xl px-6 py-2",
+        "fixed top-0 inset-x-0 max-w-5xl mx-auto z-50 bg-[#FEF3E2]/40  backdrop-blur-xl border border-gray-200 shadow-lg px-6 py-2",
         className
       )}
     >
@@ -114,6 +115,19 @@ function Navbar({ className }: { className?: string }) {
           </li>
           <li>
             <a
+              href="#skills"
+              onMouseEnter={() => handleMouseEnter("skills")}
+              onMouseLeave={handleMouseLeave}
+              className={cn(
+                "hover:text-[#FA812F] transition-colors dark:text-gray-900",
+                active === "skills" && "text-[#FB9D5C]"
+              )}
+            >
+              Skills
+            </a>
+          </li>
+          <li>
+            <a
               href="#projects"
               onMouseEnter={() => handleMouseEnter("projects")}
               onMouseLeave={handleMouseLeave}
@@ -166,6 +180,7 @@ function Navbar({ className }: { className?: string }) {
             </span>
           </ShimmerButton>
         </div>
+        <BorderBeam size={250} duration={12} delay={9} />
       </nav>
     </div>
   );

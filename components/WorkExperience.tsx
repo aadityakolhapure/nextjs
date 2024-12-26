@@ -1,4 +1,5 @@
 import WorkExperience from "@/components/ui/work";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 const ExperienceSection = () => {
     const internships = [
@@ -61,7 +62,9 @@ const ExperienceSection = () => {
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {internships.map((internship, idx) => (
                         <WorkExperience key={idx} {...internship} />
+                        
                     ))}
+
                 </div>
             </div>
         </section>

@@ -16,6 +16,7 @@ import AnimatedCircularProgressBar from "@/components/ui/animated-circular-progr
 import Contact from "@/pages/contact";
 import Loader3D from "@/components/loader";
 import { TabsDemo } from "@/components/project";
+import Skills from "@/components/skills";
 
 // import Footer from '@/components/footer';
 import ThemeToggle from '@/components/ui/ThemeToggle';
@@ -48,7 +49,7 @@ export default function Home() {
       {isLoading ? (
         // Loading Screen
         <div className="flex items-center justify-center min-h-screen bg-[#FEF3E2]">
-           <Loader3D />
+          <Loader3D />
         </div>
       ) : (
         // Main Content
@@ -70,14 +71,14 @@ export default function Home() {
               duration={3}
               repeatDelay={1}
               className={cn(
-                "[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]",
+                "[mask-image:radial-gradient(700px_circle_at_center,white,transparent)]",
                 "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
               )}
             />
           </div>
 
           {/* Contribution Graph Section */}
-          <div className="relative flex w-full items-center justify-center dark:bg-[#2d2d2d] md:shadow-xl p-6">
+          <div className="relative flex w-full items-center justify-center dark:bg-[#2d2d2d] md:shadow-xl p-6 bg-[#fefbf7]">
             <div className="w-full max-w-[90vw] overflow-x-auto justify-center flex">
               <ContributionGraph
                 username="aadityakolhapure"
@@ -111,7 +112,7 @@ export default function Home() {
               duration={3}
               repeatDelay={1}
               className={cn(
-                "[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]",
+                "[mask-image:radial-gradient(700px_circle_at_center,white,transparent)]",
                 "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
               )}
             />
@@ -134,12 +135,37 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Projects Tabs Section */}
-          <div className="relative flex md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10">
+          {/* Skills Section */}
+          <div id="skills" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10 shadow-md shadow-black/30">
+            <div className="max-w-7xl mx-auto py-20 px-4 md:px-4 lg:px-10">
+              <h2 className="text-3xl md:text-4xl text-black dark:text-white max-w-4xl front-bold">
+                My Skills
+              </h2>
+            </div>
+            <Skills />
+            <AnimatedGridPattern
+              numSquares={30}
+              maxOpacity={0.1}
+              duration={3}
+              repeatDelay={1}
+              className={cn(
+                "[mask-image:radial-gradient(700px_circle_at_center,white,transparent)]",
+                "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
+              )}
+            />
+          </div>
 
-            
-              <TabsDemo />
-           
+          {/* Certificate Tabs Section */}
+          <div id="certificate" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10 shadow-mt shadow-black/30">
+            <div className="max-w-7xl mx-auto py-14 px-4 md:px-4 lg:px-10">
+              <h2 className="text-3xl md:text-4xl text-black dark:text-white max-w-4xl front-bold">
+                Certificate
+              </h2>
+            </div>
+
+
+            <TabsDemo />
+
             <AnimatedGridPattern
               numSquares={30}
               maxOpacity={0.1}
@@ -151,6 +177,8 @@ export default function Home() {
               )}
             />
           </div>
+
+
 
           {/* Contact Section */}
           <section id="contact" className="py-16">

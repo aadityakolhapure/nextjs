@@ -6,6 +6,7 @@ import cpp from "@/public/c.jpg";
 import java from "@/public/java.jpg";
 import webDev from "@/public/web.jpg";
 
+
 const TabContent = ({ title, imagePath }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
