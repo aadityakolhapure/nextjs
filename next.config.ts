@@ -17,12 +17,15 @@
 
 // export default nextConfig;
 
-// We import the NextConfig type to get proper TypeScript type checking
+
 import type { NextConfig } from 'next'
 
-// We create our configuration object with type annotations
+
 const config: NextConfig = {
-  // Enable React strict mode for better development experience and debugging
+  images: {
+    domains: ['assets.aceternity.com'], 
+  },
+
   reactStrictMode: true,
   
   // The webpack configuration is typed using the built-in Next.js types

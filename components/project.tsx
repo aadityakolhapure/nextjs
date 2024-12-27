@@ -83,7 +83,7 @@ export function TabsDemo() {
         <div className="h-[400px] sm:h-[500px] md:h-[500px] lg:h-[700px] [perspective:1000px] relative flex flex-col w-full items-start justify-start my-10 sm:my-20">
           <Tabs
             tabs={tabs}
-            containerClassName="mb-4 sm:mb-6 md:mb-8"
+            containerclassName="mb-4 sm:mb-6 md:mb-8"
             tabClassName="text-sm sm:text-base md:text-lg"
           />
         </div>

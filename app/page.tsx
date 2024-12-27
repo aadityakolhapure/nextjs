@@ -10,6 +10,7 @@ import ContributionGraph from "@/components/GitHubContributionGraph";
 import ExperienceSection from "@/components/WorkExperience";
 import RetroGrid from "@/components/ui/retro-grid";
 import { DotPattern } from "@/components/ui/dot-pattern";
+import ProjectCard from "@/components/projectsmain"
 
 import AnimatedCircularProgressBar from "@/components/ui/animated-circular-progress-bar";
 
@@ -17,6 +18,7 @@ import Contact from "@/pages/contact";
 // import Loader3D from "@/components/loader";
 import { TabsDemo } from "@/components/project";
 import Skills from "@/components/skills";
+import AchievementCard from "@/pages/achievements"
 
 // import Footer from '@/components/footer';
 import ThemeToggle from '@/components/ui/ThemeToggle';
@@ -183,6 +185,21 @@ export default function Home() {
             />
           </div>
 
+          <div id="project" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10 shadow-mt shadow-black/30">
+            <div className="max-w-7xl mx-auto py-14 px-4 md:px-4 lg:px-10">
+              <h2 className="text-3xl md:text-4xl text-black dark:text-white max-w-4xl front-bold">
+                Projects
+              </h2>
+            </div>
+            <ProjectCard/>
+          </div>
+
+          <div id="project" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10 shadow-mt shadow-black/30">
+            <div className="max-w-7xl mx-auto py-14 px-4 md:px-4 lg:px-10">
+              <h1 className="text-3xl font-bold mb-6">My Achievements</h1>
+            </div>
+            <AchievementCard/>
+          </div>
 
 
           {/* Contact Section */}
@@ -191,11 +208,43 @@ export default function Home() {
           </section>
 
           {/* <ThemeToggle /> */}
-
+          
         </div>
 
       )
       }
+      <footer className="bg-gray-800 text-white py-6 mt-12">
+            <div className="container mx-auto text-center">
+              <p className="text-sm">
+                &copy; {new Date().getFullYear()} Aaditya Kolhapure. All rights reserved.
+              </p>
+              <div className="mt-4 space-x-4">
+                <a
+                  href="https://www.linkedin.com/in/aaditya-kolhapure-534a2b241/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-blue-400"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://github.com/aadityakolhapure"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-gray-400"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="mailto:your-email@example.com"
+                  className="text-white hover:text-gray-400"
+                >
+                  Email
+                </a>
+              </div>
+            </div>
+          </footer>
+
     </div >
   );
 }
