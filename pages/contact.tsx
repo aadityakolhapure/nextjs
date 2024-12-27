@@ -46,12 +46,12 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-[#fff] text-white p-8">
       {/* <h1 className="text-5xl font-bold text-center mb-16">Contact Us</h1> */}
-      <div className="max-w-7xl mx-auto pt-5 px-4 md:px-4 lg:px-10 mb-4">
+      {/* <div className="max-w-7xl mx-auto pt-5 px-4 md:px-4 lg:px-10 mb-4">
         <h2 className="text-4xl md:text-4xl mb-4 text-black dark:text-white max-w-4xl font-bold" >
           Contact Details
         </h2>
         
-      </div>
+      </div> */}
       
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Contact Details Section */}

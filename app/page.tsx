@@ -10,25 +10,31 @@ import ContributionGraph from "@/components/GitHubContributionGraph";
 import ExperienceSection from "@/components/WorkExperience";
 import RetroGrid from "@/components/ui/retro-grid";
 import { DotPattern } from "@/components/ui/dot-pattern";
-import ProjectCard from "@/components/projectsmain"
+import ProjectCard from "@/components/projectsmain";
 
 import AnimatedCircularProgressBar from "@/components/ui/animated-circular-progress-bar";
 
 import Contact from "@/pages/contact";
-// import Loader3D from "@/components/loader";
 import { TabsDemo } from "@/components/project";
 import Skills from "@/components/skills";
-import AchievementCard from "@/pages/achievements"
-import ChatBot from "@/components/chatbot"
-
-// import Footer from '@/components/footer';
-import ThemeToggle from '@/components/ui/ThemeToggle';
+import AchievementCard from "@/pages/achievements";
+import ChatBot from "@/components/chatbot";
 
 export default function Home() {
   const [value, setValue] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour < 12) {
+      setGreeting("Good Morning!");
+    } else if (hour < 18) {
+      setGreeting("Good Afternoon!");
+    } else {
+      setGreeting("Good Evening!");
+    }
+
     const handleIncrement = (prev: number) => {
       if (prev === 100) {
         return 0;
@@ -50,20 +56,25 @@ export default function Home() {
   return (
     <div className="min-h-screen font-[family-name:var(--font-geist-sans)]">
       {isLoading ? (
-        // Loading Screen
-        <div className="flex items-center justify-center min-h-screen bg-[#FEF3E2]">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-[#FEF3E2]">
           <AnimatedCircularProgressBar
             max={100}
             min={0}
             value={value}
             gaugePrimaryColor="rgb(251, 150, 82)"
             gaugeSecondaryColor="rgba(0, 0, 0, 0.1)"
-          />        </div>
+          />
+          <div className="w-full text-center py-6 bg-[#FEF3E2]">
+            <h1 className="text-2xl font-bold text-gray-800">{greeting} Welcome to my portfolio!</h1>
+          </div>
+        </div>
       ) : (
-        // Main Content
         <div className="items-center justify-items-center">
           {/* Navbar */}
           <NavbarDemo />
+
+          {/* Greeting Message */}
+          
 
           {/* Profile Section */}
           <div
@@ -230,6 +241,7 @@ export default function Home() {
           <div id="contact" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fff] pb-10 shadow-mt shadow-black/30">
             <div className="max-w-7xl mx-auto py-14 px-4 md:px-4 lg:px-10">
               <h1 className="text-4xl font-bold mb-6">Contact</h1>
+              {/* <p className="text-lg font-bold mb-6">Get in touch with me</p> */}
             </div>
             <Contact />
             <AnimatedGridPattern
