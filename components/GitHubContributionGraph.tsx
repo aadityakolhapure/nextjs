@@ -145,11 +145,11 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({
 
   return (
     <Card className="w-full max-w-4xl p-4 mb-4 pb-8">
-      <div className="max-w-7xl mx-auto py-20 px-4 md:px-4 lg:px-10">
+      {/* <div className="max-w-7xl mx-auto py-20 px-4 md:px-4 lg:px-10">
         <h2 className="text-3xl md:text-4xl text-black dark:text-white max-w-4xl front-bold">
           GitHub Contributions
         </h2>
-      </div>
+      </div> */}
       <CardContent>
         <div className="flex flex-col gap-2">
           {/* Months row */}

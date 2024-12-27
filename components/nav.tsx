@@ -140,6 +140,19 @@ function Navbar({ className }: { className?: string }) {
             </a>
           </li>
           <li>
+            <a
+              href="#achievement"
+              onMouseEnter={() => handleMouseEnter("achievement")}
+              onMouseLeave={handleMouseLeave}
+              className={cn(
+                "hover:text-[#FA812F] transition-colors dark:text-gray-900",
+                active === "achievement" && "text-[#FB9D5C]"
+              )}
+            >
+              Achievement
+            </a>
+          </li>
+          <li>
             <Link
               href="#contact"  // Corrected href to #contact
               onMouseEnter={() => handleMouseEnter("contact")}

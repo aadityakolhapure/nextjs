@@ -54,11 +54,11 @@ const ExperienceSection = () => {
     return (
         <section className="py-12">
             <div className="container mx-auto px-6">
-                <div className="max-w-7xl mx-auto py-20 px-4 md:px-4 lg:px-10">
+                {/* <div className="max-w-7xl mx-auto py-20 px-4 md:px-4 lg:px-10">
                     <h2 className="text-3xl md:text-4xl text-black dark:text-white max-w-4xl front-bold">
                         Work Experience
                     </h2>
-                </div>
+                </div> */}
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {internships.map((internship, idx) => (
                         <WorkExperience key={idx} {...internship} />

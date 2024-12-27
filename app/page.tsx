@@ -19,6 +19,7 @@ import Contact from "@/pages/contact";
 import { TabsDemo } from "@/components/project";
 import Skills from "@/components/skills";
 import AchievementCard from "@/pages/achievements"
+import ChatBot from "@/components/chatbot"
 
 // import Footer from '@/components/footer';
 import ThemeToggle from '@/components/ui/ThemeToggle';
@@ -55,7 +56,7 @@ export default function Home() {
             max={100}
             min={0}
             value={value}
-            gaugePrimaryColor="rgb(79 70 229)"
+            gaugePrimaryColor="rgb(251, 150, 82)"
             gaugeSecondaryColor="rgba(0, 0, 0, 0.1)"
           />        </div>
       ) : (
@@ -86,7 +87,10 @@ export default function Home() {
 
           {/* Contribution Graph Section */}
           <div className="relative flex w-full items-center justify-center dark:bg-[#2d2d2d] md:shadow-xl p-6 bg-[#fefbf7]">
-            <div className="w-full max-w-[90vw] overflow-x-auto justify-center flex">
+            <div className="w-full max-w-[90vw] overflow-x-auto justify-center flex flex-col">
+              <div className="max-w-7xl mx-auto pt-10 px-4 md:px-4 lg:px-10">
+                <h1 className="text-4xl font-bold mb-6">GitHub Contribution Graph</h1>
+              </div>
               <ContributionGraph
                 username="aadityakolhapure"
                 githubToken={process.env.NEXT_PUBLIC_GITHUB_TOKEN || ""}
@@ -108,11 +112,14 @@ export default function Home() {
           {/* Timeline Section */}
           <div
             id="about"
-            className="relative flex md:h-full h-full w-full items-center justify-center overflow-hidden p-6 md:shadow-xl"
+            className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden p-6 md:shadow-xl"
           >
-            <div className="tracking-tighter text-black dark:text-white">
-              <TimelineDemo />
+            {/* <div className="tracking-tighter text-black dark:text-white"> */}
+            <div className="max-w-7xl mx-auto pt-10 px-4 md:px-4 lg:px-10">
+              <h1 className="text-4xl font-bold mb-6">Academic Details</h1>
             </div>
+            <TimelineDemo />
+
             <AnimatedGridPattern
               numSquares={30}
               maxOpacity={0.1}
@@ -127,7 +134,10 @@ export default function Home() {
 
           {/* Experience Section */}
           <div id="work" className="relative flex md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10 shadow-lx">
-            <div className="w-full max-w-[90vw] overflow-x-auto justify-center flex">
+            <div className="w-full max-w-[90vw] overflow-x-auto justify-center flex flex-col">
+              <div className="max-w-7xl mx-auto pt-10 px-4 md:px-4 lg:px-10">
+                <h1 className="text-4xl font-bold mb-6">Internship</h1>
+              </div>
               <ExperienceSection />
               <DotPattern
                 width={20}
@@ -145,9 +155,7 @@ export default function Home() {
           {/* Skills Section */}
           <div id="skills" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10 shadow-md shadow-black/30">
             <div className="max-w-7xl mx-auto py-20 px-4 md:px-4 lg:px-10">
-              <h2 className="text-3xl md:text-4xl text-black dark:text-white max-w-4xl front-bold">
-                My Skills
-              </h2>
+              <h1 className="text-4xl font-bold mb-6">Skills</h1>
             </div>
             <Skills />
             <AnimatedGridPattern
@@ -164,86 +172,116 @@ export default function Home() {
 
           {/* Certificate Tabs Section */}
           <div id="certificate" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10 shadow-mt shadow-black/30">
-            <div className="max-w-7xl mx-auto py-14 px-4 md:px-4 lg:px-10">
-              <h2 className="text-3xl md:text-4xl text-black dark:text-white max-w-4xl front-bold">
-                Certificate
-              </h2>
+            <div className="max-w-7xl mx-auto pt-12 lg:px-10">
+              <h1 className="text-4xl font-bold mb-6">Certificate</h1>
             </div>
 
 
             <TabsDemo />
 
+            <DotPattern
+              width={20}
+              height={20}
+              cx={1}
+              cy={1}
+              cr={1}
+              className={cn(
+                "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] ",
+              )}
+            />
+          </div>
+
+          <div id="projects" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fff] pb-10 shadow-mt shadow-black/30 p-6">
+            <div className="max-w-7xl mx-auto py-14 px-4 md:px-4 lg:px-10">
+              <h1 className="text-4xl font-bold mb-6">Projects</h1>
+            </div>
+            <ProjectCard />
             <AnimatedGridPattern
               numSquares={30}
               maxOpacity={0.1}
               duration={3}
               repeatDelay={1}
               className={cn(
-                "[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]",
+                "[mask-image:radial-gradient(700px_circle_at_center,white,transparent)]",
                 "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
               )}
             />
           </div>
 
-          <div id="project" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10 shadow-mt shadow-black/30">
+          <div id="achievement" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10 shadow-mt shadow-black/30">
             <div className="max-w-7xl mx-auto py-14 px-4 md:px-4 lg:px-10">
-              <h2 className="text-3xl md:text-4xl text-black dark:text-white max-w-4xl front-bold">
-                Projects
-              </h2>
+              <h1 className="text-4xl font-bold mb-6">My Achievements</h1>
             </div>
-            <ProjectCard/>
-          </div>
-
-          <div id="project" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fefbf7] pb-10 shadow-mt shadow-black/30">
-            <div className="max-w-7xl mx-auto py-14 px-4 md:px-4 lg:px-10">
-              <h1 className="text-3xl font-bold mb-6">My Achievements</h1>
-            </div>
-            <AchievementCard/>
+            <AchievementCard />
+            <DotPattern
+              width={20}
+              height={20}
+              cx={1}
+              cy={1}
+              cr={1}
+              className={cn(
+                "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] ",
+              )}
+            />
           </div>
 
 
           {/* Contact Section */}
-          <section id="contact" className="py-16">
+          <div id="contact" className="relative flex flex-col md:h-full h-full w-full items-center justify-center overflow-hidden md:shadow-xl bg-[#fff] pb-10 shadow-mt shadow-black/30">
+            <div className="max-w-7xl mx-auto py-14 px-4 md:px-4 lg:px-10">
+              <h1 className="text-4xl font-bold mb-6">Contact</h1>
+            </div>
             <Contact />
-          </section>
+            <AnimatedGridPattern
+              numSquares={30}
+              maxOpacity={0.1}
+              duration={3}
+              repeatDelay={1}
+              className={cn(
+                "[mask-image:radial-gradient(700px_circle_at_center,white,transparent)]",
+                "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
+              )}
+            />
+          </div>
 
           {/* <ThemeToggle /> */}
-          
+          <ChatBot/>
+
         </div>
 
       )
       }
-      <footer className="bg-gray-800 text-white py-6 mt-12">
-            <div className="container mx-auto text-center">
-              <p className="text-sm">
-                &copy; {new Date().getFullYear()} Aaditya Kolhapure. All rights reserved.
-              </p>
-              <div className="mt-4 space-x-4">
-                <a
-                  href="https://www.linkedin.com/in/aaditya-kolhapure-534a2b241/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-blue-400"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="https://github.com/aadityakolhapure"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-gray-400"
-                >
-                  GitHub
-                </a>
-                <a
-                  href="mailto:your-email@example.com"
-                  className="text-white hover:text-gray-400"
-                >
-                  Email
-                </a>
-              </div>
-            </div>
-          </footer>
+      <footer className="bg-gray-800 text-white py-6">
+        <div className="container mx-auto text-center">
+          <p className="text-sm">
+            &copy; {new Date().getFullYear()} Aaditya Kolhapure. All rights reserved.
+          </p>
+          <div className="mt-4 space-x-4">
+            <a
+              href="https://www.linkedin.com/in/aaditya-kolhapure-534a2b241/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-blue-400"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/aadityakolhapure"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-gray-400"
+            >
+              GitHub
+            </a>
+            <a
+              href="mailto:your-email@example.com"
+              className="text-white hover:text-gray-400"
+            >
+              Email
+            </a>
+          </div>
+        </div>
+      </footer>
 
     </div >
   );
