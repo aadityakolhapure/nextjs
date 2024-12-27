@@ -14,7 +14,7 @@ import { DotPattern } from "@/components/ui/dot-pattern";
 import AnimatedCircularProgressBar from "@/components/ui/animated-circular-progress-bar";
 
 import Contact from "@/pages/contact";
-import Loader3D from "@/components/loader";
+// import Loader3D from "@/components/loader";
 import { TabsDemo } from "@/components/project";
 import Skills from "@/components/skills";
 
@@ -39,7 +39,7 @@ export default function Home() {
     setTimeout(() => {
       clearInterval(interval);
       setIsLoading(false);
-    }, 5000); // Simulate loading for 10 seconds
+    }, 10000); // Simulate loading for 10 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -49,8 +49,13 @@ export default function Home() {
       {isLoading ? (
         // Loading Screen
         <div className="flex items-center justify-center min-h-screen bg-[#FEF3E2]">
-          <Loader3D />
-        </div>
+          <AnimatedCircularProgressBar
+            max={100}
+            min={0}
+            value={value}
+            gaugePrimaryColor="rgb(79 70 229)"
+            gaugeSecondaryColor="rgba(0, 0, 0, 0.1)"
+          />        </div>
       ) : (
         // Main Content
         <div className="items-center justify-items-center">
