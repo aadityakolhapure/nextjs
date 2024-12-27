@@ -27,7 +27,7 @@ const ProjectCard = ({
     techStack
 }: ProjectCardProps) => {
     return (
-        <Card className="w-full max-w-md overflow-hidden transition-all duration-300 hover:shadow-lg bg-white">
+        <Card className="w-full max-w-md overflow-hidden transition-all duration-300 hover:shadow-lg bg-gray-100">
             <CardHeader className="p-0">
                 <div className="relative h-48 w-full overflow-hidden">
                     <img

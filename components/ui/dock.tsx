@@ -80,9 +80,6 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
 
 Dock.displayName = "Dock";
 
-
-Dock.displayName = "Dock";
-
 export interface DockIconProps
   extends Omit<MotionProps & React.HTMLAttributes<HTMLDivElement>, "children"> {
   size?: number;
@@ -92,6 +89,7 @@ export interface DockIconProps
   className?: string;
   children?: React.ReactNode;
   props?: PropsWithChildren;
+  href?: string;
 }
 
 const DockIcon = ({
@@ -101,6 +99,7 @@ const DockIcon = ({
   mouseX,
   className,
   children,
+  href,
   ...props
 }: DockIconProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -124,18 +123,26 @@ const DockIcon = ({
     damping: 12,
   });
 
-  return (
+  const content = (
     <motion.div
       ref={ref}
       style={{ width: scaleSize, height: scaleSize, padding }}
       className={cn(
-        "flex aspect-square cursor-pointer items-center justify-center rounded-full",
+        "flex aspect-square cursor-pointer items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors",
         className,
       )}
       {...props}
     >
       {children}
     </motion.div>
+  );
+
+  return href ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="no-underline">
+      {content}
+    </a>
+  ) : (
+    content
   );
 };
 

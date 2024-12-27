@@ -12,16 +12,16 @@ export function DockDemo() {
   return (
     <div className="relative">
       <Dock direction="middle">
-        <DockIcon>
+        <DockIcon href="https://github.com/aadityakolhapure">
           <Icons.gitHub className="size-6" />
         </DockIcon>
-        <DockIcon>
+        <DockIcon href="https://www.linkedin.com/in/aaditya-kolhapure-534a2b241/">
           <Icons.googleDrive className="size-6" />
         </DockIcon>
-        <DockIcon>
+        <DockIcon href="#">
           <Icons.notion className="size-6" />
         </DockIcon>
-        <DockIcon>
+        <DockIcon href="">
           <Icons.whatsapp className="size-6" />
         </DockIcon>
       </Dock>
@@ -67,7 +67,8 @@ const Icons = {
       height="28"
       fill="currentColor"
     >
-      <path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0zM7.06 20.45H3.56V9h3.5v11.45zM5.31 7.57C4.09 7.57 3.09 6.56 3.09 5.34 3.09 4.12 4.1 3.11 5.31 3.11s2.22 1.01 2.22 2.23c0 1.22-1 2.23-2.22 2.23zm14.89 12.88h-3.5v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67h-3.5V9h3.36v1.56h.05c.47-.9 1.62-1.86 3.33-1.86 3.56 0 4.22 2.34 4.22 5.38v6.37z" fill="#0a66c2"/>
+      <path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0zM7.06 20.45H3.56V9h3.5v11.45zM5.31 7.57C4.09 7.57 3.09 6.56 3.09 5.34 3.09 4.12 4.1 3.11 5.31 3.11s2.22 1.01 2.22 2.23c0 1.22-1 2.23-2.22 2.23zm14.89 12.88h-3.5v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67h-3.5V9h3.36v1.56h.05c.47-.9 1.62-1.86 3.33-1.86 3.56 0 4.22 2.34 4.22 5.38v6.37z"
+    />
     </svg>
   ),
   whatsapp: (props: IconProps) => (
