@@ -1,13 +1,18 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { Tabs } from "@/components/ui/tabs";
 import cpp from "@/public/c.jpg";
 import java from "@/public/java.jpg";
 import webDev from "@/public/web.jpg";
 
+// Define the props type
+interface TabContentProps {
+  title: string;
+  imagePath: StaticImageData; // Updated to match the type of imported images
+}
 
-const TabContent = ({ title, imagePath }) => {
+const TabContent = ({ title, imagePath }: TabContentProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
