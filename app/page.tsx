@@ -19,6 +19,8 @@ import { TabsDemo } from "@/components/project";
 import Skills from "@/components/skills";
 import AchievementCard from "@/pages/achievements";
 import ChatBot from "@/components/chatbot";
+import InteractiveHoverButton from "@/components/ui/interactive-hover-button";
+import Footer from "@/components/footer";
 
 export default function Home() {
   const [value, setValue] = useState(0);
@@ -207,6 +209,7 @@ export default function Home() {
               <h1 className="text-4xl font-bold mb-6">Projects</h1>
             </div>
             <ProjectCard />
+            <InteractiveHoverButton className="mt-4"/>
             <AnimatedGridPattern
               numSquares={30}
               maxOpacity={0.1}
@@ -263,7 +266,7 @@ export default function Home() {
 
       )
       }
-      <footer className="bg-gray-800 text-white py-6">
+      {/* <footer className="bg-gray-800 text-white py-6">
         <div className="container mx-auto text-center">
           <p className="text-sm">
             &copy; {new Date().getFullYear()} Aaditya Kolhapure. All rights reserved.
@@ -293,7 +296,8 @@ export default function Home() {
             </a>
           </div>
         </div>
-      </footer>
+      </footer> */}
+      <Footer/>
 
     </div >
   );
