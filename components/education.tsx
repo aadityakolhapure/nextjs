@@ -18,7 +18,7 @@ export function TimelineDemo() {
             Dnyanshree Institute of Engineering and Technology, Satara
           </p>
           <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base font-medium mb-2">
-            CGPA: <span className="text-[#FAB12F] font-semibold">7.5</span>
+            CGPA: <span className="text-[#FAB12F] font-semibold">7.3</span>
           </p>
         </div>
       ),
